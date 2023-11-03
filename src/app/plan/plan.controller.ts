@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Delete } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { CreatePlanService } from './create-plan/create-plan.service';
@@ -11,6 +11,10 @@ import { CreatePlanSwagger } from './swagger/create-plan.swagger';
 import { UpdatePlanService } from './update-plan/update-plan.service';
 import { UpdatePlanSwagger } from './swagger/update-plan.swagger';
 import { FindPlanByIdSwagger } from './swagger/find-plan-by-id.swagger';
+import { FindAllPlanSwagger } from './swagger/find-all-plan.swagger';
+import { FindAllPlanService } from './find-all-plan/find-all-plan.service';
+import { DeletePlanByIdSwagger } from './swagger/delete-plan-by-id.swagger';
+import { DeletePlanByIdService } from './delete-plan-by-id/delete-plan-by-id.service';
 
 @ApiTags('plan')
 @Controller('plan')
@@ -19,6 +23,8 @@ export class PlanController {
     private readonly createPlanService: CreatePlanService,
     private readonly updatePlanService: UpdatePlanService,
     private readonly findPlanByIdService: FindPlanByIdService,
+    private readonly findAllPlanService: FindAllPlanService,
+    private readonly deletePlanByIdService: DeletePlanByIdService,
   ) {}
 
   @Post('create')
@@ -51,5 +57,17 @@ export class PlanController {
     @Param() params: IdParamsRequestDTO,
   ): Promise<PlanResponseDTO> {
     return await this.findPlanByIdService.execute(params.id);
+  }
+
+  @Get('find-all')
+  @FindAllPlanSwagger()
+  async findAll(): Promise<PlanResponseDTO[]> {
+    return await this.findAllPlanService.execute();
+  }
+
+  @Delete('delete/:id')
+  @DeletePlanByIdSwagger()
+  async deleteById(@Param() params: IdParamsRequestDTO): Promise<PlanResponseDTO> {
+    return await this.deletePlanByIdService.execute(params.id);
   }
 }

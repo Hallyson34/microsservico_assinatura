@@ -15,8 +15,8 @@ export class PlanMockRepository implements PlanRepositoryInterface {
     return this.localDatabase.plan.update(planEntity);
   }
 
-  deleteById(id: number): Promise<PlanEntity> {
-    throw new Error(`Method not implemented. ${id}`);
+  async deleteById(id: number): Promise<PlanEntity> {
+    return this.localDatabase.plan.deleteById(id);
   }
 
   async findById(id: number): Promise<PlanEntity> {
@@ -24,6 +24,6 @@ export class PlanMockRepository implements PlanRepositoryInterface {
   }
 
   async findAll(): Promise<PlanEntity[]> {
-    throw new Error('Method not implemented.');
+    return this.localDatabase.plan.findAll();
   }
 }
