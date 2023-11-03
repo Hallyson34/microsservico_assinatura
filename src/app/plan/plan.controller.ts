@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  Delete,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { CreatePlanService } from './create-plan/create-plan.service';
@@ -67,7 +75,9 @@ export class PlanController {
 
   @Delete('delete/:id')
   @DeletePlanByIdSwagger()
-  async deleteById(@Param() params: IdParamsRequestDTO): Promise<PlanResponseDTO> {
+  async deleteById(
+    @Param() params: IdParamsRequestDTO,
+  ): Promise<PlanResponseDTO> {
     return await this.deletePlanByIdService.execute(params.id);
   }
 }
