@@ -21,6 +21,6 @@ export class AppModule implements NestModule {
         res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
         next();
       })
-      .forRoutes('*'); // Isso permite CORS para todas as rotas
+      .forRoutes('*');
   }
 }
