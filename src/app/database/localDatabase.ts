@@ -31,7 +31,8 @@ class Plan {
   }
 
   public deleteById(id: number): PlanEntity {
-    return this.data.splice(id, 1)[0];
+    const idToRemove = this.data.findIndex((plan) => plan.id === id);
+    return this.data.splice(idToRemove, 1)[0];
   }
 
   public findById(id: number): PlanEntity {
