@@ -16,10 +16,12 @@ export class LocalDatabase {
 }
 
 class Plan {
+  private nextId: number = 0;
   private data: PlanEntity[] = [];
 
   public create(planEntity: PlanEntity): PlanEntity {
     this.data.push(planEntity);
+    this.nextId++;
     return planEntity;
   }
 
@@ -41,6 +43,6 @@ class Plan {
   }
 
   public getNextId(): number {
-    return this.data.length;
+    return this.nextId;
   }
 }
