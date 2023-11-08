@@ -16,10 +16,12 @@ export class LocalDatabase {
 }
 
 class Plan {
+  private nextId: number = 0;
   private data: PlanEntity[] = [];
 
   public create(planEntity: PlanEntity): PlanEntity {
     this.data.push(planEntity);
+    this.nextId++;
     return planEntity;
   }
 
@@ -29,7 +31,8 @@ class Plan {
   }
 
   public deleteById(id: number): PlanEntity {
-    return this.data.splice(id, 1)[0];
+    const idToRemove = this.data.findIndex((plan) => plan.id === id);
+    return this.data.splice(idToRemove, 1)[0];
   }
 
   public findById(id: number): PlanEntity {
@@ -41,6 +44,6 @@ class Plan {
   }
 
   public getNextId(): number {
-    return this.data.length;
+    return this.nextId;
   }
 }
