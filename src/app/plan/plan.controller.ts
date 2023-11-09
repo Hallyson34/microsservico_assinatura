@@ -43,6 +43,7 @@ export class PlanController {
     return await this.createPlanService.execute(
       requestDTO.name,
       requestDTO.value,
+      requestDTO.description,
     );
   }
 
@@ -56,6 +57,7 @@ export class PlanController {
       params.id,
       requestDTO.name,
       requestDTO.value,
+      requestDTO.description,
     );
   }
 

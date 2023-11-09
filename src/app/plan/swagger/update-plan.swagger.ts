@@ -41,6 +41,11 @@ export function UpdatePlanSwagger(): MethodDecorator {
                 'name should not be empty',
               ),
             },
+            'Parameter name must be a string': {
+              value: ClassValidatorErrorResponse.create(
+                'name must be a string',
+              ),
+            },
             'Parameterd value empty': {
               value: ClassValidatorErrorResponse.create(
                 'value should not be empty',
@@ -51,9 +56,14 @@ export function UpdatePlanSwagger(): MethodDecorator {
                 'value must be a number conforming to the specified constraints',
               ),
             },
-            'Parameter name must be a string': {
+            'Parameter description empty': {
               value: ClassValidatorErrorResponse.create(
-                'name must be a string',
+                'description should not be empty',
+              ),
+            },
+            'Parameter description must be a string': {
+              value: ClassValidatorErrorResponse.create(
+                'description must be a string',
               ),
             },
           },

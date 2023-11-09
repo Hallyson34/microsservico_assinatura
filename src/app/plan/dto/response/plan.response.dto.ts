@@ -9,4 +9,7 @@ export class PlanResponseDTO {
 
   @ApiProperty()
   value: number;
+
+  @ApiProperty()
+  description: string;
 }

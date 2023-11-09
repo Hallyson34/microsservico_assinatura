@@ -12,4 +12,9 @@ export class CreatePlanRequestDTO {
   @IsNotEmpty()
   @IsNumber()
   value: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  description: string;
 }

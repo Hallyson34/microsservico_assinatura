@@ -10,7 +10,11 @@ export class CreatePlanService {
     private readonly planMockRepository: PlanMockRepository,
   ) {}
 
-  async execute(name: string, value: number): Promise<PlanResponseDTO> {
-    return await this.planMockRepository.create(name, value);
+  async execute(
+    name: string,
+    value: number,
+    description: string,
+  ): Promise<PlanResponseDTO> {
+    return await this.planMockRepository.create(name, value, description);
   }
 }

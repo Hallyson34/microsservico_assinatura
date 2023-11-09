@@ -15,6 +15,7 @@ export class UpdatePlanService {
     id: number,
     name: string,
     value: number,
+    description: string,
   ): Promise<PlanResponseDTO> {
     const existingEntity = await this.planMockRepository.findById(id);
 
@@ -25,6 +26,9 @@ export class UpdatePlanService {
     } else {
       existingEntity.name = name ? name : existingEntity.name;
       existingEntity.value = value ? value : existingEntity.value;
+      existingEntity.description = description
+        ? description
+        : existingEntity.description;
     }
 
     return await this.planMockRepository.update(existingEntity);
