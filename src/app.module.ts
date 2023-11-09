@@ -3,9 +3,10 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PlanModule } from './app/plan/plan.module';
+import { SignatureModule } from './app/signature/signature.module';
 
 @Module({
-  imports: [PlanModule],
+  imports: [PlanModule, SignatureModule],
   controllers: [AppController],
   providers: [AppService],
 })
