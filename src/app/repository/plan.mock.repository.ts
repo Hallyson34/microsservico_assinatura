@@ -1,4 +1,4 @@
-import { LocalDatabase } from '../database/localDatabase';
+import { LocalDatabase } from '../database/local/localDatabase';
 import { PlanEntity } from '../plan/plan.entity';
 import PlanRepositoryInterface from '../plan/plan.repository';
 
