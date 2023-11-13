@@ -11,7 +11,8 @@ export default interface SignatureRepositoryInterface {
     signatureId: number,
     newDueDay: number,
   ): Promise<SignatureEntity>;
-  deactivateById(id: number): Promise<SignatureEntity>;
+  deactivate(entity: SignatureEntity): Promise<SignatureEntity>;
   findById(id: number): Promise<SignatureEntity>;
   findAllByUserId(userId: number): Promise<SignatureEntity[]>;
+  findActiveByUserId(userId: number): Promise<SignatureEntity>;
 }
