@@ -7,10 +7,7 @@ export default interface SignatureRepositoryInterface {
     period: number,
     due_day: number,
   ): Promise<SignatureEntity>;
-  updateDueDay(
-    signatureId: number,
-    newDueDay: number,
-  ): Promise<SignatureEntity>;
+  updateDueDay(entity: SignatureEntity): Promise<SignatureEntity>;
   deactivate(entity: SignatureEntity): Promise<SignatureEntity>;
   findById(id: number): Promise<SignatureEntity>;
   findAllByUserId(userId: number): Promise<SignatureEntity[]>;

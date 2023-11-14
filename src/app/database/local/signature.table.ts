@@ -1,4 +1,5 @@
 import { SignatureEntity } from '../../../app/signature/signature.entity';
+import {SignatureStatusEnum} from '../../enum/signature-status.enum'
 
 export class SignatureTable {
   private nextId: number = 0;
@@ -30,8 +31,13 @@ export class SignatureTable {
   public findAll(): SignatureEntity[] {
     return this.data;
   }
-
+  public findAllByUserId(user_id: number): SignatureEntity[] {
+    return this.data.filter(u=>u.user_id==user_id);
+  }
   public getNextId(): number {
     return this.nextId;
+  }
+  public findActiveByUserId(user_id: number): SignatureEntity{
+    return this.data.filter(s=>s.user_id==user_id && s.status == SignatureStatusEnum.ACTIVE)[0];
   }
 }

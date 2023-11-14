@@ -27,7 +27,16 @@ export class SignatureService {
     signatureId: number,
     newDueDay: number,
   ): Promise<SignatureResponseDTO> {
-    return await this.signatureMockRepository.updateDueDay(signatureId,newDueDay);
+    const signature = await this.signatureMockRepository.findById(signatureId);
+
+    if (!signature) {
+      throw new BadRequestException(
+        'The ID passed has no equivalent entity in database.',
+      );
+    } else {
+      signature.due_day = newDueDay
+    }
+    return await this.signatureMockRepository.updateDueDay(signature);
   }
   async deactivateSignature(
     id: number

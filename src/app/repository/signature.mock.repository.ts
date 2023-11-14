@@ -1,44 +1,28 @@
 import { SignatureEntity } from '../signature/signature.entity';
 import SignatureRepositoryInterface from '../signature/signature.repository';
+import { LocalDatabase } from '../database/local/localDatabase';
 
 export class SignatureMockRepository implements SignatureRepositoryInterface {
-  // create(plan_id: number,user_id: number,period: number,due_day: number,): Promise<SignatureEntity> {
-  //   const id = this.localDatabase.signature.getNextId();
-  //   const entity: SignatureEntity = SignatureEntity.create(id, plan_id, user_id, period, due_day);
-  //   return this.localDatabase.signature.create(entity);
-  // }
-  // updateDueDay(
-  //   signatureId: number,
-  //   newDueDay: number,
-  // ): Promise<SignatureEntity> {
-  //   return this.localDatabase.signature.update(planEntity);
-  // }
-  create(
-    plan_id: number,
-    user_id: number,
-    period: number,
-    due_day: number,
-  ): Promise<SignatureEntity> {
-    throw new Error(
-      `Method not implemented. ${plan_id + user_id + period + due_day}`,
-    );
+  constructor(private localDatabase = LocalDatabase.createConnection()) {}
+
+  create(plan_id: number,user_id: number,period: number,due_day: number,): Promise<SignatureEntity> {
+    const id = this.localDatabase.signature.getNextId();
+    const entity: SignatureEntity = SignatureEntity.create(id, plan_id, user_id, period, due_day);
+    return this.localDatabase.signature.create(entity);
   }
-  updateDueDay(
-    signatureId: number,
-    newDueDay: number,
-  ): Promise<SignatureEntity> {
-    throw new Error(`Method not implemented. ${signatureId + newDueDay}`);
+  updateDueDay(signatureEntity: SignatureEntity): Promise<SignatureEntity> {
+    return this.localDatabase.signature.update(signatureEntity);
   }
   deactivate(signatureEntity: SignatureEntity): Promise<SignatureEntity> {
-    throw new Error(`Method not implemented. ${signatureEntity}`);
+    return this.localDatabase.signature.update(signatureEntity);
   }
   findById(id: number): Promise<SignatureEntity> {
-    throw new Error(`Method not implemented. ${id}`);
+    return this.localDatabase.signature.findById(id);
   }
   findAllByUserId(userId: number): Promise<SignatureEntity[]> {
-    throw new Error(`Method not implemented. ${userId}`);
+    return this.localDatabase.signature.findAllByUserId(userId);
   }
   findActiveByUserId(userId: number): Promise<SignatureEntity> {
-    throw new Error(`Method not implemented. ${userId}`);
+    return this.localDatabase.signature.findActiveByUserId(userId);
   }
 }
