@@ -1,6 +1,6 @@
 import { ClassValidatorErrorResponse } from 'src/app/class-validator/error.response';
 
-import { applyDecorators } from '@nestjs/common';
+import { BadRequestException, applyDecorators } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiOkResponse,
@@ -22,6 +22,11 @@ export function CreateSignatureSwagger(): MethodDecorator {
       content: {
         'application/json': {
           examples: {
+            'PlanId not exists in database': {
+              value: new BadRequestException(
+                'Not exists a plan with this plan id!',
+              ),
+            },
             'Some Parameter empty': {
               value: ClassValidatorErrorResponse.create(
                 '[parameter] should not be empty',

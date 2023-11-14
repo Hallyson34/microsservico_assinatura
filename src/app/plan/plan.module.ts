@@ -13,5 +13,11 @@ import { PlanController } from './plan.controller';
       useClass: PlanMockRepository,
     },
   ],
+  exports: [
+    {
+      provide: 'PlanMockRepository',
+      useClass: PlanMockRepository,
+    },
+  ],
 })
 export class PlanModule {}

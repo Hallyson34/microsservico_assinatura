@@ -3,12 +3,15 @@ import { SignatureStatusEnum } from '../enum/signature-status.enum';
 import { SignatureMockRepository } from '../repository/signature.mock.repository';
 import { SignatureResponseDTO } from '../signature/dto/response/signature.response.dto';
 import { SignatureEntity } from './signature.entity';
+import { PlanMockRepository } from '../repository/plan.mock.repository';
 
 @Injectable()
 export class SignatureService {
   constructor(
     @Inject('SignatureMockRepository')
     private readonly signatureMockRepository: SignatureMockRepository,
+    @Inject('PlanMockRepository')
+    private readonly planMockRepository: PlanMockRepository,
   ) {}
 
   async createSignature(
@@ -19,6 +22,12 @@ export class SignatureService {
   ): Promise<SignatureResponseDTO> {
     const activeSignature =
       await this.signatureMockRepository.findActiveByUserId(user_id);
+
+    const plan = this.planMockRepository.findById(plan_id);
+
+    if (!plan) {
+      throw new BadRequestException('Not exists a plan with this plan id!');
+    }
 
     if (activeSignature) {
       await this.signatureMockRepository.deactivate(activeSignature);
