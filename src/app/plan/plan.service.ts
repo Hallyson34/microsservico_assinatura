@@ -1,4 +1,4 @@
-import { Inject, Injectable, BadRequestException} from '@nestjs/common';
+import { Inject, Injectable, BadRequestException } from '@nestjs/common';
 
 import { PlanMockRepository } from '../repository/plan.mock.repository';
 import { PlanResponseDTO } from './dto/response/plan.response.dto';
@@ -24,7 +24,7 @@ export class PlanService {
     return await this.planMockRepository.findAll();
   }
   async findPlanById(id: number): Promise<PlanResponseDTO> {
-  return await this.planMockRepository.findById(id);
+    return await this.planMockRepository.findById(id);
   }
   async updatePlan(
     id: number,

@@ -11,7 +11,7 @@ import { ApiTags } from '@nestjs/swagger';
 
 import { PlanService } from './plan.service';
 import { CreatePlanRequestDTO } from './dto/request/create-plan.request.dto';
-import { IdParamsRequestDTO } from './dto/request/id-params.request.dto';
+import { PlanIdParamsRequestDTO } from './dto/request/plan-id-params.request.dto';
 import { UpdatePlanRequestDTO } from './dto/request/update-plan.request.dto';
 import { PlanResponseDTO } from './dto/response/plan.response.dto';
 import { CreatePlanSwagger } from './swagger/create-plan.swagger';
@@ -23,9 +23,7 @@ import { DeletePlanByIdSwagger } from './swagger/delete-plan-by-id.swagger';
 @ApiTags('plan')
 @Controller('plan')
 export class PlanController {
-  constructor(
-    private readonly planService: PlanService
-  ) {}
+  constructor(private readonly planService: PlanService) {}
 
   @Post('create')
   @CreatePlanSwagger()
@@ -42,7 +40,7 @@ export class PlanController {
   @Put('update/:id')
   @UpdatePlanSwagger()
   async updatePlan(
-    @Param() params: IdParamsRequestDTO,
+    @Param() params: PlanIdParamsRequestDTO,
     @Body() requestDTO: UpdatePlanRequestDTO,
   ): Promise<PlanResponseDTO> {
     return await this.planService.updatePlan(
@@ -56,7 +54,7 @@ export class PlanController {
   @Get('find-by-id/:id')
   @FindPlanByIdSwagger()
   async findById(
-    @Param() params: IdParamsRequestDTO,
+    @Param() params: PlanIdParamsRequestDTO,
   ): Promise<PlanResponseDTO> {
     return await this.planService.findPlanById(params.id);
   }
@@ -70,7 +68,7 @@ export class PlanController {
   @Delete('delete/:id')
   @DeletePlanByIdSwagger()
   async deleteById(
-    @Param() params: IdParamsRequestDTO,
+    @Param() params: PlanIdParamsRequestDTO,
   ): Promise<PlanResponseDTO> {
     return await this.planService.deletePlan(params.id);
   }
