@@ -16,6 +16,9 @@ import { CreateSignatureSwagger } from './swagger/create-signature.swagger';
 import { FindSignatureByIdSwagger } from './swagger/find-signature-by-id.swagger';
 import { FindSignaturesByUserIdSwagger } from './swagger/find-signature-by-user-id.swagger';
 import { FindActivateSignatureByUserIdSwagger } from './swagger/find-activate-signature-by-user-id.swagger';
+import { UpdateDueDaySignatureRequestDTO } from './dto/request/update-due-day-signature.request.dto';
+import { UpdateDueDaySignatureSwagger } from './swagger/update-due-day-signature.swagger';
+import { DeactivateSignatureByIdSwagger } from './swagger/deactivate-signature-by-id.swagger';
 
 @ApiTags('signature')
 @Controller('signature')
@@ -36,10 +39,10 @@ export class SignatureController {
   }
 
   @Put('update-due-day/:id')
-  @UpdateDueDaySwagger()
+  @UpdateDueDaySignatureSwagger()
   async updateDueDay(
     @Param() params: SignatureIdParamsRequestDTO,
-    @Body() requestDTO: UpdateDueDayRequestDTO,
+    @Body() requestDTO: UpdateDueDaySignatureRequestDTO,
   ): Promise<SignatureResponseDTO> {
     return await this.signatureService.updateSignatureDueDay(
       params.id,

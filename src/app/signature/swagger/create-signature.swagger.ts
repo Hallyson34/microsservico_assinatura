@@ -12,7 +12,8 @@ import { SignatureResponseDTO } from '../dto/response/signature.response.dto';
 export function CreateSignatureSwagger(): MethodDecorator {
   return applyDecorators(
     ApiOperation({
-      description: 'Create a new Signature.',
+      description:
+        'Create a new Signature, if exists an active, sum the remaining months to the new signature.',
       tags: ['Create', 'Signature'],
     }),
     ApiOkResponse({ description: 'OK.', type: [SignatureResponseDTO] }),
