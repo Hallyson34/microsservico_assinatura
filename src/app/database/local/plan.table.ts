@@ -1,21 +1,6 @@
-import { PlanEntity } from '../plan/plan.entity';
+import { PlanEntity } from '../../../app/plan/plan.entity';
 
-export class LocalDatabase {
-  static database: LocalDatabase;
-  public plan: Plan;
-
-  static createConnection() {
-    if (!this.database) {
-      this.database = new LocalDatabase();
-      this.database.plan = new Plan();
-      return this.database;
-    } else {
-      return this.database;
-    }
-  }
-}
-
-class Plan {
+export class PlanTable {
   private nextId: number = 0;
   private data: PlanEntity[] = [];
 
@@ -26,7 +11,10 @@ class Plan {
   }
 
   public update(planEntity: PlanEntity): PlanEntity {
-    this.data[planEntity.id] = planEntity;
+    const indexToUpdate = this.data.findIndex(
+      (plan) => plan.id === planEntity.id,
+    );
+    this.data[indexToUpdate] = planEntity;
     return planEntity;
   }
 

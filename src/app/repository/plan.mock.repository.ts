@@ -1,13 +1,13 @@
-import { LocalDatabase } from '../database/localDatabase';
+import { LocalDatabase } from '../database/local/localDatabase';
 import { PlanEntity } from '../plan/plan.entity';
 import PlanRepositoryInterface from '../plan/plan.repository';
 
 export class PlanMockRepository implements PlanRepositoryInterface {
   constructor(private localDatabase = LocalDatabase.createConnection()) {}
 
-  async create(name: string, value: number): Promise<PlanEntity> {
+  async create(name: string, value: number, description): Promise<PlanEntity> {
     const id = this.localDatabase.plan.getNextId();
-    const entity: PlanEntity = PlanEntity.create(id, name, value);
+    const entity: PlanEntity = PlanEntity.create(id, name, value, description);
     return this.localDatabase.plan.create(entity);
   }
 

@@ -36,6 +36,16 @@ export function CreatePlanSwagger(): MethodDecorator {
                 'value should not be empty',
               ),
             },
+            'Parameter description empty': {
+              value: ClassValidatorErrorResponse.create(
+                'description should not be empty',
+              ),
+            },
+            'Parameter description must be a string': {
+              value: ClassValidatorErrorResponse.create(
+                'description must be a string',
+              ),
+            },
             'Parameter value must be a number': {
               value: ClassValidatorErrorResponse.create(
                 'value must be a number conforming to the specified constraints',

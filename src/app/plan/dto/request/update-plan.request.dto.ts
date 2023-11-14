@@ -10,4 +10,8 @@ export class UpdatePlanRequestDTO {
   @ApiProperty()
   @IsNumber()
   value: number;
+
+  @ApiProperty()
+  @IsString()
+  description: string;
 }
