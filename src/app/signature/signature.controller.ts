@@ -13,6 +13,9 @@ import { SignatureIdParamsRequestDTO } from './dto/request/signature-id-params.r
 import { SignatureResponseDTO } from './dto/response/signature.response.dto';
 import { SignatureService } from './signature.service';
 import { CreateSignatureSwagger } from './swagger/create-signature.swagger';
+import { FindSignatureByIdSwagger } from './swagger/find-signature-by-id.swagger';
+import { FindSignaturesByUserIdSwagger } from './swagger/find-signature-by-user-id.swagger';
+import { FindActivateSignatureByUserIdSwagger } from './swagger/find-activate-signature-by-user-id.swagger';
 
 @ApiTags('signature')
 @Controller('signature')
