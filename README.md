@@ -40,7 +40,7 @@ $ npm run test:cov
 ## Acess Swagger after running development
 
 ```bash
-htpp://localhost:3000/docs
+http://localhost:3000/docs
 ```
 
 
