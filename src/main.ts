@@ -14,6 +14,10 @@ async function bootstrap() {
     .setTitle('Microsserviço de Assinatura')
     .setDescription('Microsserviço que possibilita um CRUD completo de plans.')
     .setVersion('1.0')
+    .addBearerAuth(
+      { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+      'JWT',
+    )
     .addTag('assinatura')
     .build();
   const document = SwaggerModule.createDocument(app, config);

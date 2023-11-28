@@ -7,7 +7,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateSignatureRequestDTO } from './dto/request/create-signature.request.dto';
 import { SignatureIdParamsRequestDTO } from './dto/request/signature-id-params.request.dto';
 import { SignatureResponseDTO } from './dto/response/signature.response.dto';
@@ -20,6 +20,7 @@ import { UpdateDueDaySignatureRequestDTO } from './dto/request/update-due-day-si
 import { UpdateDueDaySignatureSwagger } from './swagger/update-due-day-signature.swagger';
 import { DeactivateSignatureByIdSwagger } from './swagger/deactivate-signature-by-id.swagger';
 
+@ApiBearerAuth('JWT')
 @ApiTags('signature')
 @Controller('signature')
 export class SignatureController {

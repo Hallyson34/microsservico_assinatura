@@ -4,9 +4,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PlanModule } from './app/plan/plan.module';
 import { SignatureModule } from './app/signature/signature.module';
+import { AuthenticationModule } from './autenticacao/autenticacao.module';
 
 @Module({
-  imports: [PlanModule, SignatureModule],
+  imports: [PlanModule, SignatureModule, AuthenticationModule],
   controllers: [AppController],
   providers: [AppService],
 })

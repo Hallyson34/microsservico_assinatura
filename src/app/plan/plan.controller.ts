@@ -7,7 +7,7 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 import { PlanService } from './plan.service';
 import { CreatePlanRequestDTO } from './dto/request/create-plan.request.dto';
@@ -20,6 +20,7 @@ import { FindPlanByIdSwagger } from './swagger/find-plan-by-id.swagger';
 import { FindAllPlanSwagger } from './swagger/find-all-plan.swagger';
 import { DeletePlanByIdSwagger } from './swagger/delete-plan-by-id.swagger';
 
+@ApiBearerAuth('JWT')
 @ApiTags('plan')
 @Controller('plan')
 export class PlanController {
